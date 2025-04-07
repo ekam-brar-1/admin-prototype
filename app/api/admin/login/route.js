@@ -9,9 +9,13 @@ export async function POST(req) {
   try {
     const { db } = await connectToDatabase();
     // Look up the admin using the received adminId (which corresponds to the username field in DB)
-    const admin = await db.collection('admin').findOne({ username: adminId });
+    const admin = await db.collection('Admin').findOne({ username: adminId });
+    
     if (!admin) {
       return new Response(JSON.stringify({ message: 'Invalid credentials' }), { status: 401 });
+    }
+    else {
+      console.log("Admin found:", admin); // Debug log
     }
 
     const isMatch = await bcrypt.compare(password, admin.password);
