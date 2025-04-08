@@ -5,32 +5,41 @@ import bcrypt from "bcryptjs";
 
 export default function Home() {
   console.log("Hello World");
-
-  // Hashing a password
-  bcrypt.hash('yourpassword123', 10).then((hashed) => {
+  bcrypt.hash("yourpassword123", 10).then((hashed) => {
     console.log("Hashed password:", hashed);
-
-    // Example to compare password
-    const userInput = "yourpassword123"; // Password user types
-    const storedHashedPassword = "$2b$10$CvQhyfIpgYXjvMl2qQCNL.SUfkZUGyjwInAeSGyQM8ySOeQmRmZG."; // Stored bcrypt hash
-
-    // You MUST use await or then
-    bcrypt.compare(userInput, storedHashedPassword).then((isMatch) => {
-      if (isMatch) {
-        console.log("✅ Password is correct!");
-      } else {
-        console.log("❌ Password is incorrect.");
-      }
-    }).catch((err) => {
-      console.error("Error comparing passwords:", err);
-    });
+    const userInput = "yourpassword123";
+    const storedHashedPassword = "$2b$10$CvQhyfIpgYXjvMl2qQCNL.SUfkZUGyjwInAeSGyQM8ySOeQmRmZG.";
+    bcrypt
+      .compare(userInput, storedHashedPassword)
+      .then((isMatch) => {
+        if (isMatch) {
+          console.log("✅ Password is correct!");
+        } else {
+          console.log("❌ Password is incorrect.");
+        }
+      })
+      .catch((err) => {
+        console.error("Error comparing passwords:", err);
+      });
   });
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <button className="bg-blue-500 text-white px-4 py-2 rounded">
-        <Link href="/admin/login">Go to Admin</Link>
-      </button>
+    <div className="min-h-screen flex flex-col">
+      <div className="bg-yellow-200 flex h-20 justify-center items-center py-12">
+        <h1 className="text-3xl font-bold text-black">WELCOME TO HANDS ON TOURING</h1>
+      </div>
+      <div className="h-1 w-full bg-black" />
+   
+      <div className="bg-indigo-900 flex flex-col items-center flex-1 py-20">
+        <div className="rounded-full overflow-hidden w-32 h-32 border-2 border-white">
+          <Image src="/avatar.png" alt="User Avatar" width={128} height={128} />
+        </div>
+        <p className="text-white text-lg">User: ABC</p>
+        <Link href="/admin/login" className="px-4 py-2 bg-purple-600 text-white rounded">
+          Login
+        </Link>
+      </div>
     </div>
   );
 }
+

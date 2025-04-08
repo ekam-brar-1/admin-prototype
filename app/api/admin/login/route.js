@@ -4,11 +4,12 @@ import bcrypt from 'bcryptjs';
 export async function POST(req) {
   const body = await req.json();
   console.log("Request body:", body); // Debug log
-  const { adminId, password } = body;
+  const adminId = body.email;
+const password = body.password;
+  console.log("Admin ID:", adminId); // Debug log
 
   try {
     const { db } = await connectToDatabase();
-    // Look up the admin using the received adminId (which corresponds to the username field in DB)
     const admin = await db.collection('Admin').findOne({ username: adminId });
     
     if (!admin) {
