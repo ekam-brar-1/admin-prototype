@@ -4,25 +4,7 @@ import Link from "next/link";
 import bcrypt from "bcryptjs";
 
 export default function Home() {
-  console.log("Hello World");
-  bcrypt.hash("yourpassword123", 10).then((hashed) => {
-    console.log("Hashed password:", hashed);
-    const userInput = "yourpassword123";
-    const storedHashedPassword = "$2b$10$CvQhyfIpgYXjvMl2qQCNL.SUfkZUGyjwInAeSGyQM8ySOeQmRmZG.";
-    bcrypt
-      .compare(userInput, storedHashedPassword)
-      .then((isMatch) => {
-        if (isMatch) {
-          console.log("✅ Password is correct!");
-        } else {
-          console.log("❌ Password is incorrect.");
-        }
-      })
-      .catch((err) => {
-        console.error("Error comparing passwords:", err);
-      });
-  });
-
+  
   return (
     <div className="min-h-screen flex flex-col">
       <div className="bg-yellow-200 flex h-20 justify-center items-center py-12">
@@ -34,7 +16,7 @@ export default function Home() {
         <div className="rounded-full overflow-hidden w-32 h-32 border-2 border-white">
           <Image src="/avatar.png" alt="User Avatar" width={128} height={128} />
         </div>
-        <p className="text-white text-lg">User: ABC</p>
+        <p className="text-white text-lg">Welcome back!</p>
         <Link href="/admin/login" className="px-4 py-2 bg-purple-600 text-white rounded">
           Login
         </Link>

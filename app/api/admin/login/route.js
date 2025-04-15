@@ -3,10 +3,10 @@ import bcrypt from 'bcryptjs';
 
 export async function POST(req) {
   const body = await req.json();
-  console.log("Request body:", body); // Debug log
+  console.log("Request body:", body);
   const adminId = body.email;
 const password = body.password;
-  console.log("Admin ID:", adminId); // Debug log
+  console.log("Admin ID:", adminId); 
 
   try {
     const { db } = await connectToDatabase();
@@ -16,7 +16,7 @@ const password = body.password;
       return new Response(JSON.stringify({ message: 'Invalid credentials' }), { status: 401 });
     }
     else {
-      console.log("Admin found:", admin); // Debug log
+      console.log("Admin found:", admin); 
     }
 
     const isMatch = await bcrypt.compare(password, admin.password);
