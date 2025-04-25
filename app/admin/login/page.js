@@ -25,7 +25,7 @@ export default function AdminLogin() {
       }
     } catch (err) {
       console.error(err);
-      setError("Invalid email or password.");
+      setError("Invalid Username or password.");
     }
   };
 
